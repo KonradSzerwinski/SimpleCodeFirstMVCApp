@@ -1,0 +1,62 @@
+﻿@model WebApplication1.ViewModels.AccountDetailsViewModel
+
+@{
+    ViewBag.Title = "AccountDetails";
+}
+
+<h2>Account Details</h2>
+
+<div>
+    <h4>AccountDetailsViewModel</h4>
+    <hr />
+    @if (ViewBag.Status == true)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.Message
+        </div>
+    }
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifyDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Session["Username"].ToString() == Model.UserName)
+    {
+        @Html.ActionLink("Edit", "EditAccount", new { /* id = Model.PrimaryKey */ })    <span>|</span>
+        @Html.ActionLink("Delete Account", "DeleteAccount") <span>|</span>
+        @Html.ActionLink("Add role", "AddRole");
+    }
+
+</p>

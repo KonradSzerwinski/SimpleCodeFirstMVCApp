@@ -1,0 +1,33 @@
+﻿@if (Session["UserID"] != null)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+<ul class="nav navbar-nav navbar-right">
+    <li> <a href="#"> @Session["Username"]</a></li>
+    @if ((bool)Session["ProfileHavePicture"] == true)
+    {
+        <li>
+            <img src="@Url.Action("UserPhoto", "Account" )" height="48" width="48" />
+        </li>
+    }
+
+    @if (Session["Role"].ToString() == "Admin")
+    {
+        <li>@Html.ActionLink("All Users", "ListUsers", "Account")</li>
+    }
+    <li>@Html.ActionLink("My Account", "AccountDetails", "Account")</li>
+    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+</ul>
+    }
+}
+
+else
+{
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account")</li>
+        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+    </ul>
+}

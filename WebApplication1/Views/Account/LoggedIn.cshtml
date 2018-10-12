@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "LoggedIn";
+}
+
+@if (Session["UserID"] != null)
+{
+    @Html.AntiForgeryToken()
+    <div class="alert alert-success" role="alert">
+        Hello @Session["Username"].ToString()
+    </div>
+
+
+}
+

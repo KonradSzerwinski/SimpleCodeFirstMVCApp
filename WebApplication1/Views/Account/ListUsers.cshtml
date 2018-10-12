@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication1.ViewModels.UserListViewModel>
+
+@{
+    ViewBag.Title = "ListUsers";
+}
+
+<h2>List Users</h2>
+
+@if (ViewBag.Status == true)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAccount", new { id = item.ID }) |
+                @Html.ActionLink("Details", "AccountDetails", new { id = item.ID }) |
+                @if (item.Username != Session["Username"].ToString())
+                {
+                    @Html.ActionLink("Delete", "DeleteAccount", new { id = item.ID })
+                }
+
+            </td>
+        </tr>
+    }
+</table>
